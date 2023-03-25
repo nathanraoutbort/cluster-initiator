@@ -28,8 +28,6 @@ jobs:
       id: plan
       run: terraform apply -auto-approve -target="google_container_cluster.primary" -var 'project=${{ secrets.GKE_PROJECT }}' -var 'username=${{ github.actor }}' -input=false
 
-    Configure Docker to use the gcloud command-line tool as a credential
-    helper for authentication
     - run: |-
         gcloud --quiet auth configure-docker
 
