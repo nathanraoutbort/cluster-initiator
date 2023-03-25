@@ -1,7 +1,7 @@
 name: cluster-init
 on: [push]
 jobs:
-  terraform:
+  test:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
