@@ -1,0 +1,9 @@
+serviceAccount:
+  create: true
+  annotations:
+     "iam.gke.io/gcp-service-account": "external-dns-${username}@${project}.iam.gserviceaccount.com"
+sources:
+  - ingress
+domainFilters:
+  - nathan-demo.com
+provider: google
