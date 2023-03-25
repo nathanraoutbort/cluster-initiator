@@ -29,7 +29,7 @@ jobs:
 
     - name: Terraform Apply
       id: apply-targer
-      run: terraform apply -auto-approve -target="google_container_cluster.primary" -var'kube_config_path=${{ env.KUBECONFIG }} -var 'project=${{ secrets.GKE_PROJECT }}' -var 'username=${{ github.actor }}' -input=false
+      run: terraform apply -auto-approve -target="google_container_cluster.primary" -var'kube_config_path=${{ env.KUBECONFIG }}' -var 'project=${{ secrets.GKE_PROJECT }}' -var 'username=${{ github.actor }}' -input=false
 
     - run: |-
         gcloud --quiet auth configure-docker
