@@ -13,16 +13,16 @@ jobs:
         service_account_key: ${{ secrets.GCP_JWT }}
         project_id: ${{ secrets.GKE_PROJECT }}
 
-    # - name: Setup Terraform
-    #   uses: hashicorp/setup-terraform@v2
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
 
-    # - name: Terraform Init
-    #   id: init
-    #   run: terraform init
+    - name: Terraform Init
+      id: init
+      run: terraform init
 
-    # - name: Terraform Validate
-    #   id: validate
-    #   run: terraform validate -no-color
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
 
     # - name: Terraform Apply
     #   id: plan
