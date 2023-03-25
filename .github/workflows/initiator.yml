@@ -13,8 +13,8 @@ jobs:
     # Setup gcloud CLI
     - uses: google-github-actions/auth@v1
       with:
-        service_account_key: ${{ secrets.GCP_JWT }}
-        # project_id: ${{ secrets.GKE_PROJECT }}
+        service_account: ${{ secrets.GCP_JWT }}
+        project_id: ${{ secrets.GKE_PROJECT }}
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
