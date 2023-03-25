@@ -1,5 +1,4 @@
-name: learn-github-actions
-run-name: ${{ github.actor }}
+name: cluster-init
 on: [push]
 jobs:
   terraform:
