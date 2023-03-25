@@ -43,4 +43,4 @@ jobs:
  
     - name: Terraform Apply
       id: apply
-      run: terraform apply -auto-approve  -var'kube_config_path=${{ env.KUBECONFIG }} -var 'project=${{ secrets.GKE_PROJECT }}' -var 'username=${{ github.actor }}' -input=false
+      run: terraform apply -auto-approve  -var 'kube_config_path=${{ env.KUBECONFIG }}\ -var 'project=${{ secrets.GKE_PROJECT }}' -var 'username=${{ github.actor }}' -input=false
