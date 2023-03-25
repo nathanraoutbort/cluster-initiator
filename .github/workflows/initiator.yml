@@ -29,19 +29,19 @@ jobs:
       if: github.event_name == 'pull_request'
       run: terraform apply -auto-approve -target="google_container_cluster.primary" -var 'project=${{ secrets.GKE_PROJECT }}' -var 'username=${{ github.actor }}' -input=false
 
-    # # Configure Docker to use the gcloud command-line tool as a credential
-    # # helper for authentication
-    # - run: |-
-    #     gcloud --quiet auth configure-docker
+    # Configure Docker to use the gcloud command-line tool as a credential
+    # helper for authentication
+    - run: |-
+        gcloud --quiet auth configure-docker
 
-    # # Get the GKE credentials so we can deploy to the cluster
-    # - uses: google-github-actions/get-gke-credentials@v1
-    #   with:
-    #     cluster_name: ${{ github.actor }}-cluster
-    #     location: "europe-west1-b"
-    #     # credentials: ${{ secrets.GKE_SA_KEY }}
+    # Get the GKE credentials so we can deploy to the cluster
+    - uses: google-github-actions/get-gke-credentials@v1
+      with:
+        cluster_name: ${{ github.actor }}-cluster
+        location: "europe-west1-b"
+        # credentials: ${{ secrets.GKE_SA_KEY }}
  
-    #  - name: Terraform Apply
-    #   id: plan
-    #   if: github.event_name == 'pull_request'
-    #   run: terraform apply -auto-approve -var 'project=${{ secrets.GKE_PROJECT }}' -var 'username=${{ github.actor }}' -input=false
+     - name: Terraform Apply
+      id: plan
+      if: github.event_name == 'pull_request'
+      run: terraform apply -auto-approve -var 'project=${{ secrets.GKE_PROJECT }}' -var 'username=${{ github.actor }}' -input=false
