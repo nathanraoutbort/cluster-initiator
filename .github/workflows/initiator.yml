@@ -1,5 +1,5 @@
 name: cluster-init
-on: issues
+on: issue_comment
 jobs:
   test:
     if: ${{ github.event.head_commit.message == init }}
