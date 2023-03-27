@@ -31,18 +31,18 @@ jobs:
 
     - name: Terraform Apply
       id: apply-targer
-      run: terraform apply -auto-approve -target="google_container_cluster.primary" -var 'kube_config_path=${{ env.KUBECONFIG }}' -var 'project=${{ secrets.GKE_PROJECT }}' -var 'username=${{ github.actor }}-${{ github.run_number }}' -input=false
+      run: terraform apply -auto-approve -target="google_container_cluster.primary" -var 'kube_config_path=${{ env.KUBECONFIG }}' -var 'project=${{ secrets.GKE_PROJECT }}' -var 'username=${{ github.actor }}' -input=false
 
     - run: |-
         gcloud --quiet auth configure-docker
 
     - uses: google-github-actions/get-gke-credentials@v1
       with:
-        cluster_name: ${{ github.actor }}-${{ github.run_number }}-cluster
+        cluster_name: ${{ github.actor }}-cluster
         location: "europe-west1-b"
  
     - name: Terraform Apply
       id: apply
-      run: terraform apply -auto-approve  -var 'kube_config_path=${{ env.KUBECONFIG }}' -var 'project=${{ secrets.GKE_PROJECT }}' -var 'username=${{ github.actor }}-${{ github.run_number }}' -input=false
+      run: terraform apply -auto-approve  -var 'kube_config_path=${{ env.KUBECONFIG }}' -var 'project=${{ secrets.GKE_PROJECT }}' -var 'username=${{ github.actor }}' -input=false
 
 
