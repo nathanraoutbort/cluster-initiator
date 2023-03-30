@@ -2,13 +2,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations: 
-    kubernetes.io/tls-acme: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
   name: nginx
 spec:
   ingressClassName: nginx
   rules:
-    - host: {{ .Values.env.user }}.nathan-demo.com
+    - host: a2a77f3c6a1fb47be9e95b8d013f946d-759324408.eu-west-1.elb.amazonaws.com
       http:
         paths:
           - pathType: Prefix
@@ -18,7 +19,3 @@ spec:
                 port:
                   number: 80
             path: /
-  tls: # < placing a host in the TLS config will determine what ends up in the cert's subjectAltNames
-  - hosts:
-    - {{ .Values.env.user }}.nathan-demo.com
-    secretName: myingress-cert # < cert-manager will store the created certificate in this secret.
